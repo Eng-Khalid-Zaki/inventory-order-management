@@ -1,0 +1,14 @@
+<div class="product-grid">
+    <mat-card *ngFor="let product of products" class="product-card">
+        <mat-card-header>
+            <mat-card-title class="product-title">{{ product.productName }}</mat-card-title>
+            <mat-card-subtitle class="product-subtitle">Model Year: {{ product.modelYear }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="product-price">Price: {{ product.listPrice | currency }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button class="view-details-button" mat-button color="accent">View Details</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
