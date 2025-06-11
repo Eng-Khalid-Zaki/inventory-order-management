@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ProductService } from '../../services/product.service';
-
-interface Product {
-  productName: string;
-  modelYear: number;
-  listPrice: number;
-}
+import { ProductDTO } from '../../dto/ProductDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -17,21 +14,59 @@ interface Product {
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
-  products: Product[] = [];
+  products: ProductDTO[] = [];
+  brandId: number | null = null;
+  categoryId: number | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.route.paramMap.subscribe((params) => {
+      this.brandId = params.get('brandId')
+        ? Number(params.get('brandId'))
+        : null;
+      this.categoryId = params.get('categoryId')
+        ? Number(params.get('categoryId'))
+        : null;
+      this.loadProducts();
+    });
   }
 
   private loadProducts(): void {
+    if (this.categoryId !== null) {
+      this.productService
+        .getProductsByCategory(this.categoryId)
+        .then((products) => (this.products = products))
+        .catch((error) =>
+          console.error('Error loading category products:', error)
+        );
+    } else if (this.brandId !== null) {
+      this.productService
+        .getProductsByBrand(this.brandId)
+        .then((products) => (this.products = products))
+        .catch((error) =>
+          console.error('Error loading brand products:', error)
+        );
+    } else {
+      this.productService
+        .getAllProducts()
+        .then((products) => (this.products = products))
+        .catch((error) => console.error('Error loading all products:', error));
+    }
+  }
+
+  editProduct(productId: number): void {
+    this.router.navigate(['/edit-product', productId]);
+  }
+
+  deleteProduct(productId: number): void {
     this.productService
-      .getAllProducts()
-      .then((products) => {
-        console.log('Received products:', products); // Debugging
-        this.products = products;
-      })
-      .catch((error) => console.error('Error loading products:', error));
+      .deleteProduct(productId)
+      .then(() => this.loadProducts())
+      .catch((error) => console.error('Error deleting product:', error));
   }
 }

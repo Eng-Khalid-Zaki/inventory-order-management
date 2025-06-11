@@ -37,5 +37,4 @@ public class BrandRestController {
         brandService.deleteBrand(id);
         return ResponseEntity.ok("Brand deleted successfully");
     }
-
 }

@@ -1,0 +1,42 @@
+<div class="add-brand-form">
+<mat-form-field>
+  <mat-label>Brand Name</mat-label>
+  <input matInput [(ngModel)]="newBrandName">
+</mat-form-field>
+<button class="add-brand-button" color="accent" (click)="addBrand()" [disabled]="!newBrandName.trim()">
+  Add Brand
+</button>
+</div>
+
+<div class="brand-grid">
+  <mat-card *ngFor="let brand of brands" class="brand-card">
+    <mat-card-header>
+      <mat-card-title class="brand-title">
+        <ng-container *ngIf="editingBrandId !== brand.id">
+          {{ brand.brandName }}
+        </ng-container>
+        <ng-container *ngIf="editingBrandId === brand.id">
+          <mat-form-field appearance="outline">
+            <mat-label>Edit Brand Name</mat-label>
+            <input matInput [(ngModel)]="editedBrandName">
+          </mat-form-field>
+        </ng-container>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions class="brand-actions">
+      <button class="view-products-button" (click)="viewProducts(brand.id)">
+        View Products
+      </button>
+      <button class="edit" (click)="startEditing(brand)" *ngIf="editingBrandId !== brand.id">
+        Edit
+      </button>
+      <button class="delete" (click)="deleteBrand(brand.id)">
+        Delete
+      </button>
+      <ng-container *ngIf="editingBrandId === brand.id">
+        <button color="primary" (click)="saveEdit()">Save</button>
+        <button color="warn" (click)="cancelEditing()">Cancel</button>
+      </ng-container>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -32,7 +32,6 @@ public class BrandService {
 
     @Transactional
     public BrandDTO addBrand(BrandDTO brandDTO) {
-        System.out.println(brandDTO);
         Brand brand = BrandMapper.toEntity(brandDTO);
         if(brand.getId() != 0) {
             throw new InvalidDataFormatException("ID must not be included in the request body");

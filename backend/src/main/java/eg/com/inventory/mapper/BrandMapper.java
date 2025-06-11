@@ -5,16 +5,22 @@ import eg.com.inventory.dto.ProductDTO;
 import eg.com.inventory.entity.Brand;
 import eg.com.inventory.entity.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BrandMapper {
 
     public static BrandDTO toDTO(Brand brand) {
-        return brand != null ?
-                new BrandDTO(brand.getId(), brand.getBrandName(),
-                        brand.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
-                : null;
+        if (brand == null) {
+            return null;
+        }
+
+        List<ProductDTO> productDTOs = brand.getProducts() != null
+                ? brand.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList())
+                : new ArrayList<>();
+
+        return new BrandDTO(brand.getId(), brand.getBrandName(), productDTOs);
     }
 
     public static Brand toEntity(BrandDTO brandDTO) {

@@ -1,20 +1,27 @@
 package eg.com.inventory.mapper;
 
+//import eg.com.inventory.dto.BrandDTO;
 import eg.com.inventory.dto.CategoryDTO;
 import eg.com.inventory.dto.ProductDTO;
 import eg.com.inventory.entity.Category;
-import eg.com.inventory.entity.Product;
+//import eg.com.inventory.entity.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CategoryMapper {
 
     public static CategoryDTO toDTO(Category category) {
-        return category != null ?
-                new CategoryDTO(category.getId(), category.getCategoryName(),
-                        category.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList()))
-                : null;
+        if(category == null) {
+            return null;
+        }
+
+        List<ProductDTO> productDTOs = category.getProducts() != null
+                ? category.getProducts().stream().map(ProductMapper::toDTO).collect(Collectors.toList())
+                : new ArrayList<>();
+
+        return new CategoryDTO(category.getId(), category.getCategoryName(), productDTOs);
     }
 
     public static Category toEntity(CategoryDTO categoryDTO) {

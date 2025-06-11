@@ -5,7 +5,7 @@ import java.util.List;
 public class BrandDTO {
     private int id;
     private String brandName;
-    private List<ProductDTO> products; // List of products under this brand
+    private List<ProductDTO> products;
 
     public BrandDTO() {}
 

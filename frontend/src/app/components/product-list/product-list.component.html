@@ -7,8 +7,25 @@
         <mat-card-content>
             <p class="product-price">Price: {{ product.listPrice | currency }}</p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions class="product-actions">
             <button class="view-details-button" mat-button color="accent">View Details</button>
+            <button class="edit" (click)="editProduct(product.id)">Edit</button>
+            <button class="delete" (click)="deleteProduct(product.id)">Delete</button>
         </mat-card-actions>
     </mat-card>
 </div>
+<!-- <div class="product-grid">
+    <mat-card *ngFor="let product of products" class="product-card">
+        <mat-card-header>
+            <mat-card-title class="product-title">{{ product.productName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Model Year: {{ product.modelYear }}</p>
+            <p>Price: ${{ product.listPrice }}</p>
+        </mat-card-content>
+        <mat-card-actions class="product-actions">
+            <button class="edit" (click)="editProduct(product.id)">Edit</button>
+            <button class="delete" (click)="deleteProduct(product.id)">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div> -->
