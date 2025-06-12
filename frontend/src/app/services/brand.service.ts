@@ -26,4 +26,9 @@ export class BrandService {
   async deleteBrand(id: number): Promise<void> {
     await axios.delete(`${this.baseUrl}/${id}`);
   }
+
+  async getBrandById(id: number): Promise<Brand> {
+    const response = await axios.get<Brand>(`${this.baseUrl}/${id}`);
+    return response.data;
+  }
 }

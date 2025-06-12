@@ -3,7 +3,7 @@
   <mat-label>Brand Name</mat-label>
   <input matInput [(ngModel)]="newBrandName">
 </mat-form-field>
-<button class="add-brand-button" color="accent" (click)="addBrand()" [disabled]="!newBrandName.trim()">
+<button class="button" color="accent" (click)="addBrand()" [disabled]="!newBrandName.trim()">
   Add Brand
 </button>
 </div>
@@ -24,18 +24,18 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-actions class="brand-actions">
-      <button class="view-products-button" (click)="viewProducts(brand.id)">
+      <button class="view-products-button button" (click)="viewProducts(brand.id)">
         View Products
       </button>
-      <button class="edit" (click)="startEditing(brand)" *ngIf="editingBrandId !== brand.id">
+      <button class="edit button" (click)="startEditing(brand)" *ngIf="editingBrandId !== brand.id">
         Edit
       </button>
-      <button class="delete" (click)="deleteBrand(brand.id)">
+      <button class="delete button" (click)="deleteBrand(brand.id)">
         Delete
       </button>
       <ng-container *ngIf="editingBrandId === brand.id">
-        <button color="primary" (click)="saveEdit()">Save</button>
-        <button color="warn" (click)="cancelEditing()">Cancel</button>
+        <button class="button" (click)="saveEdit()">Save</button>
+        <button class="button" (click)="cancelEditing()">Cancel</button>
       </ng-container>
     </mat-card-actions>
   </mat-card>

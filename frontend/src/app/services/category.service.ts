@@ -31,4 +31,9 @@ export class CategoryService {
   async deleteCategory(id: number): Promise<void> {
     await axios.delete(`${this.baseUrl}/${id}`);
   }
+
+  async getCategoryById(id: number): Promise<Category> {
+    const response = await axios.get<Category>(`${this.baseUrl}/${id}`);
+    return response.data;
+  }
 }

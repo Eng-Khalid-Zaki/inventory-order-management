@@ -3,7 +3,7 @@
         <mat-label>Category Name</mat-label>
         <input matInput [(ngModel)]="newCategoryName">
     </mat-form-field>
-    <button class="add-category-button" color="accent" (click)="addCategory()" [disabled]="!newCategoryName.trim()">
+    <button class="button" color="accent" (click)="addCategory()" [disabled]="!newCategoryName.trim()">
         Add Category
     </button>
 </div>
@@ -24,18 +24,18 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-actions class="category-actions">
-            <button class="view-products-button" (click)="viewProducts(category.id)">
+            <button class="view-products-button button" (click)="viewProducts(category.id)">
                 View Products
             </button>
-            <button class="edit" (click)="startEditing(category)" *ngIf="editingCategoryId !== category.id">
+            <button class="edit button" (click)="startEditing(category)" *ngIf="editingCategoryId !== category.id">
                 Edit
             </button>
-            <button class="delete" (click)="deleteCategory(category.id)">
+            <button class="delete button" (click)="deleteCategory(category.id)">
                 Delete
             </button>
             <ng-container *ngIf="editingCategoryId === category.id">
-                <button color="primary" (click)="saveEdit()">Save</button>
-                <button color="warn" (click)="cancelEditing()">Cancel</button>
+                <button class="button" (click)="saveEdit()">Save</button>
+                <button class="button" (click)="cancelEditing()">Cancel</button>
             </ng-container>
         </mat-card-actions>
     </mat-card>

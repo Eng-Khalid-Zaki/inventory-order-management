@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ProductService } from '../../services/product.service';
-import { ProductDTO } from '../../dto/ProductDTO';
+import { ResponseProductDTO } from '../../dto/ProductDTO';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
-  products: ProductDTO[] = [];
+  products: ResponseProductDTO[] = [];
   brandId: number | null = null;
   categoryId: number | null = null;
 
@@ -61,6 +61,10 @@ export class ProductListComponent {
 
   editProduct(productId: number): void {
     this.router.navigate(['/edit-product', productId]);
+  }
+
+  addProduct(): void {
+    this.router.navigate(['/add-product']);
   }
 
   deleteProduct(productId: number): void {
