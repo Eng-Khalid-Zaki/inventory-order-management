@@ -1,0 +1,25 @@
+<div class="add-store-button">
+    <button type="submit" class="button" (click)="addStore()">
+        Add Store
+    </button>
+</div>
+
+<div class="store-grid">
+    <mat-card *ngFor="let store of stores" class="store-card">
+        <mat-card-header>
+            <mat-card-title class="store-title">{{ store.storeName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="store-data">Phone: {{ store.phone }}</p>
+            <p class="store-data">Email: {{ store.email }}</p>
+            <p class="store-data">Street: {{ store.street }}</p>
+            <p class="store-data">City: {{ store.city }}</p>
+            <p class="store-data">Zip Code: {{ store.zipCode }}</p>
+        </mat-card-content>
+        <mat-card-actions class="store-actions">
+            <button class="button view" (click)="viewStocks(store.id)">View Stocks</button>
+            <button class="button edit" (click)="editStore(store.id)">Edit</button>
+            <button class="button delete" (click)="deleteStore(store.id)">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

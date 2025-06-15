@@ -10,7 +10,6 @@ export class ProductService {
 
   async getAllProducts() {
     const response = await axios.get(`${this.baseUrl}`);
-    console.log(response.data);
     return response.data;
   }
 
@@ -49,4 +48,6 @@ export class ProductService {
     );
     return response.data;
   }
+
+  
 }

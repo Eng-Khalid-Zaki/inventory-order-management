@@ -1,0 +1,27 @@
+<form #stockForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+        <h2>{{ isEditing ? 'Edit Stock' : 'Add Stock' }}</h2>
+
+        <div class="control">
+            <label for="product">Product</label>
+            <select [disabled]="isEditing" id="product" [(ngModel)]="selectedProductId" name="product" class="form-control">
+                <option *ngFor="let product of products" [value]="product.id">{{ product.productName }}</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label for="store">Store</label>
+            <select [disabled]="isEditing" id="store" [(ngModel)]="selectedStoreId" name="store" class="form-control">
+                <option *ngFor="let store of stores" [value]="store.id">{{ store.storeName }}</option>
+            </select>
+        </div>
+
+        <div class="control">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" [(ngModel)]="quantity" name="quantity" required>
+        </div>
+        <button type="submit" class="button">
+            {{ isEditing ? 'Update Stock' : 'Add Stock' }}
+        </button>
+    </div>
+</form>

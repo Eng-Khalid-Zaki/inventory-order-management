@@ -1,8 +1,8 @@
-.add-product-button {
+.add-stock-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width:50%;
+    width: 50%;
     margin: 20px auto;
 }
 
@@ -22,14 +22,14 @@
     background-color: #319890;
 }
 
-.product-grid {
+.stock-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
 
-.product-card {
+.stock-card {
     width: 90%;
     max-width: 25rem;
     padding: 0rem 2rem;
@@ -38,13 +38,13 @@
     box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
 }
 
-.product-title {
+.product-name {
     font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
 }
 
-.product-actions {
+.stock-actions {
     display: flex;
     justify-content: space-between;
 }
@@ -83,12 +83,7 @@
     color: #fff;
 }
 
-.product-subtitle {
-    font-size: 1rem;
-    color: #fff;
-}
-
-.product-price {
+.quantity, .store-name {
     font-size: 1rem;
     color: #fff;
 }

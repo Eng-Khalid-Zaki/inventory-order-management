@@ -1,0 +1,21 @@
+<div class="add-stock-button">
+    <button type="submit" class="button" (click)="addStock()">
+        Add Stock
+    </button>
+</div>
+
+<div class="stock-grid">
+    <mat-card *ngFor="let stock of stockModels" class="stock-card">
+        <mat-card-header>
+            <mat-card-title class="product-name">Product Name: {{ stock.productName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="store-name">Store Name: {{ stock.storeName }}</p>
+            <p class="quantity">Quantity: {{ stock.quantity }}</p>
+        </mat-card-content>
+        <mat-card-actions class="stock-actions">
+            <button class="button edit" (click)="editStock(stock.productId, stock.storeId)">Edit</button>
+            <button class="button delete" (click)="deleteStock(stock.productId, stock.storeId)">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
