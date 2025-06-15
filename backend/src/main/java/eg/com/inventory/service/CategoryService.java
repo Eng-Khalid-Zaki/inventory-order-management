@@ -2,6 +2,7 @@ package eg.com.inventory.service;
 
 import eg.com.inventory.dto.CategoryDTO;
 import eg.com.inventory.entity.Category;
+import eg.com.inventory.exception.InvalidDataFormatException;
 import eg.com.inventory.mapper.CategoryMapper;
 import eg.com.inventory.repository.CategoryRepo;
 import eg.com.inventory.repository.ProductRepo;
@@ -34,6 +35,10 @@ public class CategoryService {
 
     @Transactional
     public CategoryDTO addCategory(CategoryDTO categoryDTO) {
+        if(categoryDTO.getCategoryName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("The category name should not be empty");
+        }
+
         Category category = CategoryMapper.toEntity(categoryDTO);
         Category savedCategory = categoryRepo.save(category);
         return CategoryMapper.toDTO(savedCategory);
@@ -44,6 +49,9 @@ public class CategoryService {
         Category category = categoryRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No category found with ID: " + id));
 
+        if(categoryDTO.getCategoryName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("The category name should not be empty");
+        }
         category.setCategoryName(categoryDTO.getCategoryName());
 
         Category updatedCategory = categoryRepo.save(category);

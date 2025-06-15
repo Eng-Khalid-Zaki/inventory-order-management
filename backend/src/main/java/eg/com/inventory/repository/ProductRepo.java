@@ -10,5 +10,4 @@ import java.util.List;
 public interface ProductRepo extends JpaRepository<Product, Integer> {
     List<Product> findByCategoryId(int id);
     List<Product> findByBrandId(int id);
-
 }

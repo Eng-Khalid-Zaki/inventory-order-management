@@ -7,7 +7,6 @@ import eg.com.inventory.exception.InvalidDataFormatException;
 import eg.com.inventory.mapper.BrandMapper;
 import eg.com.inventory.repository.BrandRepo;
 import eg.com.inventory.repository.ProductRepo;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,11 +31,16 @@ public class BrandService {
 
     @Transactional
     public BrandDTO addBrand(BrandDTO brandDTO) {
+        if(brandDTO.getBrandName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("The brand nane should not be empty");
+        }
         Brand brand = BrandMapper.toEntity(brandDTO);
+
         if(brand.getId() != 0) {
             throw new InvalidDataFormatException("ID must not be included in the request body");
         }
         Brand savedBrand = brandRepo.save(brand);
+
         return BrandMapper.toDTO(savedBrand);
     }
 
@@ -45,9 +49,13 @@ public class BrandService {
         Brand currentBrand = brandRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No brand found with this id: " + id));
 
+        if(brandDTO.getBrandName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Brand name should not be empty");
+        }
         currentBrand.setBrandName(brandDTO.getBrandName());
 
         Brand updatedBrand = brandRepo.save(currentBrand);
+
         return BrandMapper.toDTO(updatedBrand);
     }
 

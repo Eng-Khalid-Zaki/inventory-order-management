@@ -1,4 +1,4 @@
-package eg.com.inventory.controller;
+package eg.com.inventory.rest;
 
 import eg.com.inventory.dto.CategoryDTO;
 import eg.com.inventory.service.CategoryService;

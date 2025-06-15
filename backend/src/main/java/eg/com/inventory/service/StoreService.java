@@ -1,5 +1,6 @@
 package eg.com.inventory.service;
 
+import eg.com.inventory.dto.StockDTO;
 import eg.com.inventory.dto.StoreDTO;
 import eg.com.inventory.entity.Store;
 import eg.com.inventory.exception.InvalidDataFormatException;
@@ -7,7 +8,6 @@ import eg.com.inventory.exception.EntityNotFoundException;
 import eg.com.inventory.mapper.StoreMapper;
 import eg.com.inventory.repository.StockRepo;
 import eg.com.inventory.repository.StoreRepo;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +46,19 @@ public class StoreService {
         if(store.getId() != 0) {
             throw new InvalidDataFormatException("ID must not be included in the request body");
         }
+
+        if(storeDTO.getCity().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store city can not be empty");
+        }
+
+        if(storeDTO.getStoreName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store name can not be empty");
+        }
+
+        if(storeDTO.getStreet().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store street can not be empty");
+        }
+
         Store savedStore = storeRepo.saveAndFlush(store);
         return StoreMapper.toDTO(savedStore);
     }
@@ -54,6 +67,18 @@ public class StoreService {
     public StoreDTO updateStore(int id, StoreDTO storeDTO) {
         Store currentStore = storeRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No store found with this id: " + id));
+
+        if(storeDTO.getCity().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store city can not be empty");
+        }
+
+        if(storeDTO.getStoreName().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store name can not be empty");
+        }
+
+        if(storeDTO.getStreet().trim().isEmpty()) {
+            throw new InvalidDataFormatException("Store street can not be empty");
+        }
 
         currentStore.setStoreName(storeDTO.getStoreName());
         currentStore.setPhone(storeDTO.getPhone());

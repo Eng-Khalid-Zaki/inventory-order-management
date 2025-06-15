@@ -1,5 +1,6 @@
 package eg.com.inventory.rest;
 
+import eg.com.inventory.dto.StockDTO;
 import eg.com.inventory.dto.StoreDTO;
 import eg.com.inventory.entity.Store;
 import eg.com.inventory.mapper.StoreMapper;

@@ -51,6 +51,10 @@ public class StockService {
             throw new InvalidDataFormatException("This stock is already exists");
         }
 
+        if(stockDTO.getQuantity() < 0) {
+            throw new InvalidDataFormatException("The quantity should be positive integer");
+        }
+
         Store store = storeRepo.getReferenceById(stockDTO.getStoreId());
         Product product = productRepo.getReferenceById(stockDTO.getProductId());
         Stock stock = StockMapper.toEntity(stockDTO, store, product);
@@ -76,5 +80,11 @@ public class StockService {
                 .orElseThrow(() -> new EntityNotFoundException("No stock found with this id"));
 
         stockRepo.delete(currentStock);
+    }
+
+    @Transactional
+    public List<StockDTO> getStocksByStore(int storeId) {
+        List<Stock> stocks = stockRepo.getStocksByStoreId(storeId);
+        return StockMapper.toDTOList(stocks);
     }
 }

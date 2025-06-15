@@ -28,6 +28,11 @@ public class StockRestController {
         return stockService.getStockById(stockId);
     }
 
+    @GetMapping("/stores/{storeId}")
+    public List<StockDTO> getStocksByStore(@PathVariable int storeId) {
+        return stockService.getStocksByStore(storeId);
+    }
+
     @PostMapping
     public StockDTO addStock(@RequestBody StockDTO stockDTO) {
         return stockService.addStock(stockDTO);
@@ -43,5 +48,6 @@ public class StockRestController {
         stockService.deleteStock(storeId, productId);
         return ResponseEntity.ok("Stock was deleted successfully");
     }
+
 
 }
