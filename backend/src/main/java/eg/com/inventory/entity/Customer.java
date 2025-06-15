@@ -2,6 +2,7 @@ package eg.com.inventory.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -52,9 +53,12 @@ public class Customer {
         updatedAt = LocalDateTime.now();
     }
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
+
     public Customer() {}
 
-    public Customer(String firstName, String lastName, String phone, String email, String street, String city, String state, String zipCode) {
+    public Customer(String firstName, String lastName, String phone, String email, String street, String city, String state, String zipCode, List<Order> orders) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
@@ -63,6 +67,7 @@ public class Customer {
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+        this.orders = orders;
     }
 
     public int getId() {
@@ -133,12 +138,28 @@ public class Customer {
         this.zipCode = zipCode;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

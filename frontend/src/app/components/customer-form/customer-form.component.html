@@ -1,0 +1,46 @@
+<form #customerForm="ngForm" (ngSubmit)="saveCustomer(customerForm)">
+    <div class="control">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" [(ngModel)]="customer.firstName" name="CustomerFirstName" required>
+    </div>
+
+    <div class="control">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="CustomerLastName" [(ngModel)]="customer.lastName" name="CustomerLastName" required>
+    </div>
+
+    <div class="control">
+        <label for="CustomerPhone">Phone</label>
+        <input type="text" id="CustomerPhone" [(ngModel)]="customer.phone" name="CustomerPhone" required>
+    </div>
+
+
+    <div class="control">
+        <label for="CustomerEmail">Email</label>
+        <input type="text" id="CustomerEmail" [(ngModel)]="customer.email" name="CustomerEmail" required>
+    </div>
+
+    <div class="control">
+        <label for="CustomerStreet">Street</label>
+        <input type="text" id="CustomerStreet" [(ngModel)]="customer.street" name="CustomerStreet" required>
+    </div>
+
+    <div class="control">
+        <label for="CustomerCity">City</label>
+        <input type="text" id="CustomerCity" [(ngModel)]="customer.city" name="CustomerCity" required>
+    </div>
+
+    <div class="control">
+        <label for="CustomerState">State</label>
+        <input type="text" id="CustomerState" [(ngModel)]="customer.state" name="CustomerState" required>
+    </div>
+
+    <div class="control">
+        <label for="CustomerZipCode">Zip Code</label>
+        <input type="number" id="CustomerZipCode" [(ngModel)]="customer.zipCode" name="CustomerZipCode" required>
+    </div>
+
+    <button type="submit" class="button">
+        {{ customer.id ? 'Update Customer' : 'Add Customer' }}
+    </button>
+</form>

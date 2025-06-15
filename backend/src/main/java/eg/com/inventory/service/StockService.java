@@ -51,7 +51,7 @@ public class StockService {
             throw new InvalidDataFormatException("This stock is already exists");
         }
 
-        if(stockDTO.getQuantity() < 0) {
+        if(stockDTO.getQuantity() <= 0) {
             throw new InvalidDataFormatException("The quantity should be positive integer");
         }
 
@@ -70,6 +70,11 @@ public class StockService {
 
         Stock currentStock = stockRepo.findById(new StockId(storeId, productId))
                 .orElseThrow(() -> new EntityNotFoundException("No stock found with this id"));
+
+        if(stockDTO.getQuantity() <= 0) {
+            throw new InvalidDataFormatException("The quantity should be greater than zero");
+        }
+
         currentStock.setQuantity(stockDTO.getQuantity());
         return StockMapper.toDTO(currentStock);
     }

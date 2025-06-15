@@ -1,0 +1,95 @@
+.add-customer-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #147b73;
+    color: #d9e2f1;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #319890;
+}
+
+.customer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.customer-card {
+    width: 90%;
+    max-width: 25rem;
+    padding: 0rem 2rem;
+    background: linear-gradient(180deg, #253c3c, #1d4949);
+    border-radius: 8px;
+    box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.5);
+}
+
+.customer-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.customer-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view {
+    color: rgb(73, 147, 73);
+    transition: background-color 0.3s ease;
+}
+
+.view:hover {
+    background-color: rgb(73, 147, 73);
+    color: #fff;
+}
+
+.edit {
+    background-color: rgb(242, 86, 13);
+    color: #fff;
+    transition: background-color 0.3s ease;
+    margin-right: 0px;
+}
+
+.edit:hover {
+    background-color: rgb(242, 86, 13);
+    color: #fff;
+}
+
+.delete {
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+    transition: background-color 0.3s ease;
+    margin-right: 0px;
+}
+
+.delete:hover,
+.delete:focus {
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+}
+
+.customer-subtitle {
+    font-size: 1rem;
+    color: #fff;
+}
+
+.customer-info {
+    font-size: 1rem;
+    color: #fff;
+}

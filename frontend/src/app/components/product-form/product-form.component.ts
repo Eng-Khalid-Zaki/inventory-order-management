@@ -85,12 +85,16 @@ export class ProductFormComponent {
       this.productService
         .updateProduct(this.product.id, this.product)
         .then(() => this.router.navigate(['/products']))
-        .catch((error) => console.error('Error updating product:', error));
+        .catch((error) =>
+          console.error('Error updating product:', error.message)
+        );
     } else {
       this.productService
         .addProduct(this.product)
         .then(() => this.router.navigate(['/products']))
-        .catch((error) => console.error('Error adding product:', error));
+        .catch((error) =>
+          console.error('Error adding product:', error.message)
+        );
     }
   }
 }

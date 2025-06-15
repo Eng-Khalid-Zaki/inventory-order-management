@@ -1,0 +1,28 @@
+<div class="add-customer-button">
+    <button type="submit" class="button" (click)="addCustomer()">
+        Add Customer
+    </button>
+</div>
+
+<div class="customer-grid">
+    <mat-card *ngFor="let customer of customers" class="customer-card">
+        <mat-card-header>
+            <mat-card-title class="customer-title">First Name: {{ customer.firstName }}</mat-card-title>
+            <mat-card-title class="customer-subtitle">Last Name: {{ customer.lastName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="customer-info">Phone Number: {{ customer.phone }}</p>
+            <p class="customer-info">Email: {{ customer.email }}</p>
+            <p class="customer-info">Street: {{ customer.street }}</p>
+            <p class="customer-info">State: {{ customer.state }}</p>
+            <p class="customer-info">City: {{ customer.city }}</p>
+            <p class="customer-info">Zip Code: {{ customer.zipCode }}</p>
+            <p class="customer-info">Created At: {{ customer.createdAt }}</p>
+            <p class="customer-info">Updated At: {{ customer.updatedAt }}</p>
+        </mat-card-content>
+        <mat-card-actions class="customer-actions">
+            <button class="button edit" (click)="editCustomer(customer.id)">Edit</button>
+            <button class="button delete" (click)="deleteCustomer(customer.id)">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

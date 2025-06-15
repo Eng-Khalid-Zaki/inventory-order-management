@@ -35,4 +35,8 @@ export class AppComponent {
   goToStores(): void {
     this.router.navigate(['/stores']);
   }
+
+  goToCustomers(): void {
+    this.router.navigate(['/customers']);
+  }
 }

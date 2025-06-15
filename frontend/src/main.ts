@@ -9,6 +9,8 @@ import { StockListComponent } from './app/components/stock-list/stock-list.compo
 import { StoreListComponent } from './app/components/store-list/store-list.component';
 import { StoreFormComponent } from './app/components/store-form/store-form.component';
 import { StockFormComponent } from './app/components/stock-form/stock-form.component';
+import { CustomerListComponent } from './app/components/customer-list/customer-list.component';
+import { CustomerFormComponent } from './app/components/customer-form/customer-form.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -27,6 +29,9 @@ bootstrapApplication(AppComponent, {
       { path: 'add-store', component: StoreFormComponent },
       { path: 'edit-stock/:productId/:storeId', component: StockFormComponent },
       { path: 'add-stock', component: StockFormComponent },
+      { path: 'customers', component: CustomerListComponent },
+      { path: 'edit-customer/:customerId', component: CustomerFormComponent },
+      { path: 'add-customer', component: CustomerFormComponent },
     ]),
   ],
 }).catch((err) => console.error(err));

@@ -13,14 +13,42 @@ export class ProductService {
     return response.data;
   }
 
-  async addProduct(product: ResponseProductDTO) {
-    const response = await axios.post(`${this.baseUrl}`, product);
-    return response.data;
+  async updateProduct(id: number, product: ResponseProductDTO) {
+    try {
+      const response = await axios.put(`${this.baseUrl}/${id}`, product);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+      throw error;
+    }
   }
 
-  async updateProduct(id: number, product: ResponseProductDTO) {
-    const response = await axios.put(`${this.baseUrl}/${id}`, product);
-    return response.data;
+  async addProduct(product: ResponseProductDTO) {
+    try {
+      const response = await axios.post(`${this.baseUrl}`, product);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+      throw error;
+    }
+  }
+
+  private handleError(error: any): void {
+    if (error.response) {
+      const backendError = error.response.data;
+
+      const errorMessage =
+        backendError?.message || JSON.stringify(backendError);
+
+      alert(`Error: ${errorMessage}`);
+      console.error('Server Error:', backendError);
+    } else if (error.request) {
+      alert('Error: No response from server.');
+      console.error('No Response:', error.request);
+    } else {
+      alert(`Error: ${error.message}`);
+      console.error('Request Error:', error.message);
+    }
   }
 
   async deleteProduct(id: number) {
@@ -48,6 +76,4 @@ export class ProductService {
     );
     return response.data;
   }
-
-  
 }
